@@ -22,7 +22,7 @@ namespace Alarm
             int.TryParse(Console.ReadLine(), out int secondi);
 
 
-            if (ora != 0 && minuto != 0 && secondi != 0)
+            try
             {
                 clock.SetAlarm(ora, minuto, secondi);
                 clock.TurnOn();
@@ -30,7 +30,7 @@ namespace Alarm
                 Console.WriteLine("Premere un tasto per terminare il programma, altrimenti attendere che suoni la sveglia\n\n");
                 Console.ReadLine();
             }
-            else
+            catch (Exception)
             {
                 Console.Clear();
                 Console.WriteLine("C'è stato un errore, ripetere l'azione!");

@@ -7,21 +7,19 @@ namespace Alarm
     public class Clock : IClock
     {
         private readonly IBell _bell;
-        private System.Threading.Timer timer;
+        private System.Threading.Timer _timer;
+        private readonly IDisplay _display;
+        private Timer _clocker;
+
 
         public TimeSpan AlarmBell { get; private set; }
         public TimeSpan Time { get; private set; }
-
-        private readonly IDisplay _display;
-        private Timer _clocker;
 
         public Clock(IBell bell, DateTime now, IDisplay display)
         {
             _bell = bell;
             Time = now.TimeOfDay;
             _display = display;
-
-
         }
 
 
@@ -30,12 +28,7 @@ namespace Alarm
             AlarmBell = new TimeSpan(h, m, s);
             DateTime current = DateTime.Now;
             TimeSpan timeToGo = AlarmBell - current.TimeOfDay;
-            if (timeToGo < TimeSpan.Zero)
-            {
-                return;//time already passed
-            }
-
-            this.timer = new System.Threading.Timer(x =>
+            this._timer = new System.Threading.Timer(x =>
             {
                 _clocker.Dispose();
                 _bell.Start();
@@ -50,7 +43,7 @@ namespace Alarm
 
         public void TurnOff()
         {
-            timer.Dispose();
+            _timer.Dispose();
             _clocker.Dispose();
         }
 

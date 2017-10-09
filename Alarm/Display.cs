@@ -9,7 +9,9 @@ namespace Alarm
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.SetCursorPosition(0, Console.CursorTop - 1);
+
             System.Console.WriteLine(new TimeSpan(h, m, s));
+
             Console.ResetColor();
         }
     }
