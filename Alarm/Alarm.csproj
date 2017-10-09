@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bell.cs" />
+    <Compile Include="Clock.cs" />
+    <Compile Include="Display.cs" />
     <Compile Include="Interface\IBell.cs" />
     <Compile Include="Interface\IClock.cs" />
     <Compile Include="Interface\IDisplay.cs" />
